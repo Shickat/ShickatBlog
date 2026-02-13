@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Dominios Oficiales - Shickat</title>
+  <link rel="icon" type="image/png" href="Web/Logos/logo_wiki.png">
+  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="Web/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  
+  <!-- Vista de Dominios (inicial) -->
+  <div id="dominios-view" class="dominios-container">
+    <div class="dominios-header">
+      <h1>🌐 Dominios Oficiales</h1>
+      <p>Estos son los únicos dominios oficiales de Shickat</p>
+    </div>
+
+    <div class="dominios-list">
+      <div class="dominio-card">
+        <div class="dominio-icon">
+          <i class="fa-solid fa-globe"></i>
+        </div>
+        <div class="dominio-nombre">Shickat.me</div>
+        <div class="dominio-descripcion">Dominio principal de Shickat</div>
+        <button type="button" class="dominio-url" id="btn-wiki">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> shickat.me
+        </button>
+      </div>
+
+      <div class="dominio-card">
+        <div class="dominio-icon">
+          <i class="fa-solid fa-blog"></i>
+        </div>
+        <div class="dominio-nombre">Shickat.blog</div>
+        <div class="dominio-descripcion">Blog oficial y contenido actualizado</div>
+        <button type="button" class="dominio-url" id="btn-blog">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> shickat.blog
+        </button>
+      </div>
+    </div>
+
+    <!-- Botón del ojo escondido -->
+    <div class="eye-button" id="eye-button">
+      <i class="fa-regular fa-eye"></i>
+    </div>
+  </div>
+
+  <!-- Contenido Wiki (oculto inicialmente) -->
+  <div id="wiki-content" class="hidden">
+    <iframe id="wiki-iframe" src="Web/index.html"></iframe>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+
+</body>
+</html>

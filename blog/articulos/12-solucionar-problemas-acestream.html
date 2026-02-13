@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Solucionar problemas comunes de AceStream - Blog Shickat</title>
+  <link rel="icon" type="image/png" href="../../Web/Logos/logo_wiki.png">
+  <link rel="stylesheet" href="../../Web/styles.css?v=8">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  
+  <div class="article-container">
+    
+    <div class="article-header">
+      <div class="article-icon">
+        <i class="fa-solid fa-wrench"></i>
+      </div>
+      <h1 class="article-title">Solucionar problemas comunes de AceStream</h1>
+      <div class="article-meta">
+        <span><i class="fa-regular fa-calendar"></i> 11 Febrero 2026</span>
+        <span><i class="fa-regular fa-clock"></i> 12 minutos de lectura</span>
+      </div>
+      <div class="article-tags">
+        <span class="tag">Problemas</span>
+        <span class="tag">Soluciones</span>
+        <span class="tag">AceStream</span>
+      </div>
+    </div>
+
+    <div class="article-content">
+      
+      <p>¿Tienes problemas con AceStream? En esta guía completa encontrarás soluciones para los errores más comunes, desde problemas de instalación hasta issues de reproducción.</p>
+
+      <h2><i class="fa-solid fa-circle-xmark"></i> AceStream Engine no inicia</h2>
+      
+      <h3>Síntomas</h3>
+      <ul>
+        <li>Al hacer clic en un enlace acestream:// no pasa nada</li>
+        <li>Mensaje "AceStream Engine is not running"</li>
+        <li>El icono de AceStream no aparece en la bandeja del sistema</li>
+      </ul>
+
+      <h3>Soluciones</h3>
+
+      <h4>1. Verificar si está instalado correctamente</h4>
+      <p><strong>Windows:</strong></p>
+      <ol>
+        <li>Abre el Menú Inicio</li>
+        <li>Busca "Ace Stream"</li>
+        <li>Si no aparece, reinstala desde <code>acestream.org</code></li>
+      </ol>
+
+      <p><strong>Mac:</strong></p>
+      <ol>
+        <li>Abre Finder → Applications</li>
+        <li>Busca "Ace Stream"</li>
+        <li>Si no está, reinstala el paquete .dmg</li>
+      </ol>
+
+      <h4>2. Iniciar manualmente el Engine</h4>
+      <p><strong>Windows:</strong></p>
+      <ol>
+        <li>Ve a: <code>C:\Users\[TuUsuario]\AppData\Roaming\ACEStream\engine</code></li>
+        <li>Ejecuta <code>ace_engine.exe</code></li>
+        <li>Espera 10-15 segundos</li>
+        <li>Deberías ver el icono en la bandeja del sistema</li>
+      </ol>
+
+      <p><strong>Alternativa (Windows):</strong></p>
+      <ol>
+        <li>Presiona Windows + R</li>
+        <li>Escribe: <code>%appdata%\ACEStream\engine\ace_engine.exe</code></li>
+        <li>Presiona Enter</li>
+      </ol>
+
+      <h4>3. Verificar procesos en ejecución</h4>
+      <p><strong>Windows:</strong></p>
+      <ol>
+        <li>Presiona Ctrl + Shift + Esc (Administrador de tareas)</li>
+        <li>Busca "ace_engine.exe"</li>
+        <li>Si aparece pero no funciona, finaliza el proceso</li>
+        <li>Vuelve a iniciar AceStream</li>
+      </ol>
+
+      <h4>4. Reinstalación limpia</h4>
+      <ol>
+        <li>Desinstala AceStream completamente</li>
+        <li>Elimina la carpeta: <code>%appdata%\ACEStream</code></li>
+        <li>Reinicia el PC</li>
+        <li>Descarga la última versión de acestream.org</li>
+        <li>Instala nuevamente</li>
+      </ol>
+
+      <h4>5. Problemas con antivirus/firewall</h4>
+      <ul>
+        <li>Algunos antivirus bloquean AceStream</li>
+        <li>Añade <code>ace_engine.exe</code> a las excepciones</li>
+        <li>Permite AceStream en el Firewall de Windows</li>
+      </ul>
+
+      <h2><i class="fa-solid fa-spinner"></i> Buffering infinito / No carga</h2>
+      
+      <h3>Síntomas</h3>
+      <ul>
+        <li>La rueda de carga gira indefinidamente</li>
+        <li>"Prebuffering... 0%"</li>
+        <li>El video nunca empieza</li>
+      </ul>
+
+      <h3>Causas comunes</h3>
+
+      <h4>1. Enlace muerto o sin peers</h4>
+      <p><strong>Verificación:</strong></p>
+      <ul>
+        <li>Mira la barra de estado de AceStream</li>
+        <li>Si dice "0 peers" o "No sources", el enlace está muerto</li>
+      </ul>
+      <p><strong>Solución:</strong></p>
+      <ul>
+        <li>Prueba con otro enlace de tu lista</li>
+        <li>Busca enlaces más recientes en <a href="./06-encontrar-enlaces-acestream.html" style="color: #7ecbff;">nuestras fuentes recomendadas</a></li>
+        <li>Verifica que el evento ya ha comenzado</li>
+      </ul>
+
+      <h4>2. Conexión a internet lenta</h4>
+      <p><strong>Verificación:</strong></p>
+      <ol>
+        <li>Haz un test de velocidad (speedtest.net)</li>
+        <li>Para HD necesitas mínimo 5 Mbps</li>
+        <li>Para FHD necesitas 10 Mbps o más</li>
+      </ol>
+      <p><strong>Soluciones:</strong></p>
+      <ul>
+        <li>Cierra otras aplicaciones que usen internet</li>
+        <li>Desconecta otros dispositivos del WiFi</li>
+        <li>Usa cable Ethernet en lugar de WiFi</li>
+        <li>Busca enlaces de menor calidad (720p en lugar de 1080p)</li>
+      </ul>
+
+      <h4>3. Firewall bloqueando conexiones</h4>
+      <p><strong>Windows Firewall:</strong></p>
+      <ol>
+        <li>Panel de Control → Sistema y seguridad → Firewall de Windows</li>
+        <li>Configuración avanzada</li>
+        <li>Reglas de entrada → Nueva regla</li>
+        <li>Programa → <code>ace_engine.exe</code></li>
+        <li>Permitir conexión</li>
+      </ol>
+
+      <h4>4. Puerto bloqueado</h4>
+      <p><strong>Cambiar puerto en AceStream:</strong></p>
+      <ol>
+        <li>Abre AceStream</li>
+        <li>Preferencias → Red</li>
+        <li>Cambia el puerto (por defecto 8621)</li>
+        <li>Prueba con: 6881, 8080, o 50000</li>
+        <li>Reinicia AceStream</li>
+      </ol>
+
+      <h4>5. ISP bloqueando tráfico P2P</h4>
+      <p><strong>Solución:</strong></p>
+      <ul>
+        <li>Usa una VPN (ver <a href="./08-seguridad-streaming.html" style="color: #7ecbff;">nuestra guía de seguridad</a>)</li>
+        <li>La VPN encriptará el tráfico y evitará el bloqueo</li>
+      </ul>
+
+      <h2><i class="fa-solid fa-video-slash"></i> Video entrecortado / Lag</h2>
+      
+      <h3>Síntomas</h3>
+      <ul>
+        <li>El video se pausa constantemente</li>
+        <li>Audio y video no sincronizados</li>
+        <li>Saltos en la reproducción</li>
+      </ul>
+
+      <h3>Soluciones</h3>
+
+      <h4>1. Aumentar tamaño de caché</h4>
+      <p>La caché almacena video en memoria para reproducción fluida:</p>
+      <ol>
+        <li>Abre AceStream</li>
+        <li>Herramientas → Preferencias</li>
+        <li>Busca "Cache" o "Buffer"</li>
+        <li>Aumenta a 2-4 GB (si tienes suficiente RAM)</li>
+        <li>Guarda y reinicia AceStream</li>
+      </ol>
+
+      <div class="note">
+        <strong><i class="fa-solid fa-memory"></i> Recomendaciones de caché:</strong>
+        <ul>
+          <li>8 GB RAM → Caché 1-2 GB</li>
+          <li>16 GB RAM → Caché 2-4 GB</li>
+          <li>32 GB RAM → Caché 4-6 GB</li>
+        </ul>
+      </div>
+
+      <h4>2. Ajustar configuración de red</h4>
+      <ol>
+        <li>Preferencias → Red</li>
+        <li>Aumenta "Máximo de conexiones": 100-200</li>
+        <li>Límite de subida: Deja automático o limita a 1-2 MB/s</li>
+        <li>Activar UPnP y NAT-PMP</li>
+      </ol>
+
+      <h4>3. Cambiar reproductor</h4>
+      <p>El reproductor por defecto puede no ser óptimo:</p>
+      <ol>
+        <li>Descarga VLC Media Player</li>
+        <li>En AceStream: Preferencias → Reproductor</li>
+        <li>Selecciona VLC como reproductor externo</li>
+        <li>Prueba de nuevo</li>
+      </ol>
+
+      <h4>4. Desactivar aceleración por hardware</h4>
+      <p>Puede causar problemas en algunas tarjetas gráficas:</p>
+      <ol>
+        <li>En VLC: Herramientas → Preferencias</li>
+        <li>Input/Codecs → Hardware-accelerated decoding</li>
+        <li>Cambia a "Disable"</li>
+        <li>Reinicia VLC</li>
+      </ol>
+
+      <h4>5. Priorizar proceso de AceStream</h4>
+      <p><strong>Windows:</strong></p>
+      <ol>
+        <li>Administrador de tareas (Ctrl + Shift + Esc)</li>
+        <li>Busca "ace_engine.exe"</li>
+        <li>Clic derecho → Ir a detalles</li>
+        <li>Clic derecho → Establecer prioridad → Alta</li>
+      </ol>
+
+      <h2><i class="fa-solid fa-volume-xmark"></i> Sin audio o audio desincronizado</h2>
+      
+      <h3>Soluciones</h3>
+
+      <h4>1. Verificar pista de audio</h4>
+      <ol>
+        <li>En el reproductor: Audio → Pista de audio</li>
+        <li>Prueba las diferentes pistas disponibles</li>
+        <li>Algunos streams tienen múltiples idiomas</li>
+      </ol>
+
+      <h4>2. Ajustar sincronización de audio</h4>
+      <p><strong>En VLC:</strong></p>
+      <ol>
+        <li>Herramientas → Ajustes de pista</li>
+        <li>Sincronización de audio</li>
+        <li>Ajusta manualmente (+ o - milisegundos)</li>
+        <li>O usa atajos: "J" adelanta, "K" retrasa</li>
+      </ol>
+
+      <h4>3. Cambiar dispositivo de salida</h4>
+      <ol>
+        <li>Audio → Dispositivo de salida</li>
+        <li>Prueba con diferentes opciones</li>
+        <li>DirectX o Windows WASAPI suelen funcionar mejor</li>
+      </ol>
+
+      <h4>4. Actualizar codecs</h4>
+      <ul>
+        <li>Descarga K-Lite Codec Pack</li>
+        <li>Instala la versión básica</li>
+        <li>Reinicia el PC</li>
+        <li>Prueba de nuevo</li>
+      </ul>
+
+      <h2><i class="fa-solid fa-mobile-screen"></i> Problemas en Android</h2>
+      
+      <h3>"App keeps stopping" / La app se cierra</h3>
+
+      <h4>Solución 1: Limpiar caché y datos</h4>
+      <ol>
+        <li>Configuración → Aplicaciones</li>
+        <li>Busca AceStream</li>
+        <li>Almacenamiento → Borrar caché</li>
+        <li>Borrar datos (perderás ajustes)</li>
+        <li>Reinicia la app</li>
+      </ol>
+
+      <h4>Solución 2: Verificar permisos</h4>
+      <ol>
+        <li>Configuración → Aplicaciones → AceStream</li>
+        <li>Permisos</li>
+        <li>Activa Almacenamiento</li>
+        <li>Considera activar otros permisos necesarios</li>
+      </ol>
+
+      <h4>Solución 3: Desactivar optimización de batería</h4>
+      <ol>
+        <li>Configuración → Batería</li>
+        <li>Optimización de batería</li>
+        <li>Busca AceStream</li>
+        <li>Selecciona "No optimizar"</li>
+      </ol>
+
+      <h4>Solución 4: Reinstalar APK</h4>
+      <ol>
+        <li>Desinstala AceStream</li>
+        <li>Descarga la última versión desde acestream.org o APKMirror</li>
+        <li>Instala nuevamente</li>
+      </ol>
+
+      <h3>No se reproduce nada / Pantalla negra</h3>
+
+      <h4>Solución 1: Cambiar reproductor</h4>
+      <ol>
+        <li>En AceStream: Configuración</li>
+        <li>Reproductor predeterminado</li>
+        <li>Prueba con MX Player, VLC, o el reproductor integrado</li>
+      </ol>
+
+      <h4>Solución 2: Verificar Engine</h4>
+      <ol>
+        <li>Asegúrate de tener instalado "AceStream Engine" (app separada)</li>
+        <li>Inicia Engine manualmente antes de usar AceStream</li>
+      </ol>
+
+      <h3>Consumo excesivo de batería</h3>
+
+      <h4>Soluciones:</h4>
+      <ul>
+        <li>Reduce la calidad del stream (usa 720p en lugar de 1080p)</li>
+        <li>Limita la subida en configuración (Settings → Upload limit)</li>
+        <li>Reduce la caché asignada</li>
+        <li>Cierra la app completamente cuando termines (no la dejes en segundo plano)</li>
+      </ul>
+
+      <h2><i class="fa-solid fa-link-slash"></i> "Content ID not found"</h2>
+      
+      <h3>Causas</h3>
+      <ul>
+        <li>El ID del contenido introdujiste mal</li>
+        <li>El enlace está muerto o ya no existe</li>
+        <li>Problemas de conexión con la red de AceStream</li>
+      </ul>
+
+      <h3>Soluciones</h3>
+
+      <h4>1. Verificar el ID</h4>
+      <ul>
+        <li>Revisa que copiaste los 40 caracteres completos</li>
+        <li>No debe tener espacios al inicio o final</li>
+        <li>Formato correcto: <code>0b01aa547fad30e605e59eec5d5fe582b2c3e6c6</code></li>
+      </ul>
+
+      <h4>2. Probar con otro enlace</h4>
+      <ul>
+        <li>Si el ID no funciona, el contenido puede haber sido eliminado</li>
+        <li>Busca enlaces alternativos en <a href="../../Web/index.html" style="color: #7ecbff;">Wiki Shickat</a></li>
+      </ul>
+
+      <h4>3. Verificar conexión</h4>
+      <ul>
+        <li>Comprueba que tienes internet</li>
+        <li>Desactiva VPN temporalmente para probar</li>
+        <li>Revisa que el firewall no bloquea AceStream</li>
+      </ul>
+
+      <h2><i class="fa-solid fa-gauge"></i> Baja velocidad de descarga</h2>
+      
+      <h3>Si el indicador muestra pocos KB/s:</h3>
+
+      <h4>1. Esperar más tiempo</h4>
+      <ul>
+        <li>Al inicio la conexión puede ser lenta</li>
+        <li>Dale 1-2 minutos para que se estabilice</li>
+        <li>La velocidad debería aumentar gradualmente</li>
+      </ul>
+
+      <h4>2. Verificar peers disponibles</h4>
+      <ul>
+        <li>Mira cuántos peers hay conectados</li>
+        <li>Menos de 10 peers = posibles problemas</li>
+        <li>Más de 50 peers = debería funcionar bien</li>
+      </ul>
+
+      <h4>3. Cambiar servidor DNS</h4>
+      <ol>
+        <li>Configuración de red de Windows</li>
+        <li>Propiedades del adaptador de red</li>
+        <li>IPv4 → Propiedades</li>
+        <li>DNS: 8.8.8.8 y 8.8.4.4 (Google)</li>
+      </ol>
+
+      <h4>4. Abrir puertos en el router</h4>
+      <p>Usuarios avanzados:</p>
+      <ol>
+        <li>Accede a la configuración de tu router (generalmente 192.168.1.1)</li>
+        <li>Busca "Port Forwarding" o "Redirección de puertos"</li>
+        <li>Abre el puerto 8621 (TCP y UDP)</li>
+        <li>Apunta a la IP local de tu PC</li>
+      </ol>
+
+      <h2><i class="fa-solid fa-circle-exclamation"></i> Otros problemas comunes</h2>
+      
+      <h3>"Transcoding error"</h3>
+      <p><strong>Solución:</strong></p>
+      <ul>
+        <li>Desactiva la opción de transcoding en preferencias</li>
+        <li>Usa un reproductor externo (VLC)</li>
+        <li>Actualiza AceStream a la última versión</li>
+      </ul>
+
+      <h3>"Failed to start HTTP API"</h3>
+      <p><strong>Solución:</strong></p>
+      <ol>
+        <li>El puerto 6878 está ocupado por otra aplicación</li>
+        <li>Cierra otros programas que usen ese puerto</li>
+        <li>Reinicia el PC</li>
+        <li>Cambia el puerto en configuración de AceStream</li>
+      </ol>
+
+      <h3>Calidad inferior a la anunciada</h3>
+      <p><strong>Posibles causas:</strong></p>
+      <ul>
+        <li>La fuente original no es la calidad indicada</li>
+        <li>Tu conexión no soporta el bitrate</li>
+        <li>Pocos peers con buena conexión</li>
+      </ul>
+      <p><strong>Solución:</strong></p>
+      <ul>
+        <li>Prueba con otro enlace</li>
+        <li>Lee comentarios de otros usuarios sobre calidad</li>
+      </ul>
+
+      <h3>Pantalla verde o artefactos visuales</h3>
+      <p><strong>Soluciones:</strong></p>
+      <ol>
+        <li>Desactiva aceleración por hardware</li>
+        <li>Actualiza drivers de la tarjeta gráfica</li>
+        <li>Cambia a VLC como reproductor</li>
+        <li>En VLC: Preferencias → Video → Output → Cambiar módulo</li>
+      </ol>
+
+      <h2><i class="fa-solid fa-shield-halved"></i> Problemas de seguridad</h2>
+      
+      <h3>Antivirus detecta AceStream como amenaza</h3>
+      <p><strong>Falso positivo común:</strong></p>
+      <ul>
+        <li>Algunos antivirus detectan P2P como potencial amenaza</li>
+        <li>Descarga solo desde acestream.org (oficial)</li>
+        <li>Añade excepciones en tu antivirus</li>
+      </ul>
+
+      <h3>IP expuesta</h3>
+      <p><strong>Solución:</strong></p>
+      <ul>
+        <li>Usa siempre una VPN al usar AceStream</li>
+        <li>Lee nuestra <a href="./08-seguridad-streaming.html" style="color: #7ecbff;">guía de seguridad completa</a></li>
+      </ul>
+
+      <h2><i class="fa-solid fa-list-check"></i> Checklist de diagnóstico</h2>
+      
+      <p>Si nada funciona, ejecuta este checklist completo:</p>
+
+      <div class="note">
+        <strong><i class="fa-solid fa-clipboard-list"></i> Verificación sistemática:</strong>
+        <ol>
+          <li>✅ AceStream instalado desde fuente oficial</li>
+          <li>✅ AceStream Engine en ejecución (icono en bandeja)</li>
+          <li>✅ Conexión a internet funcional (5+ Mbps)</li>
+          <li>✅ Firewall con excepción para AceStream</li>
+          <li>✅ Antivirus no bloqueando ace_engine.exe</li>
+          <li>✅ Puerto 8621 abierto</li>
+          <li>✅ Enlace válido con peers activos</li>
+          <li>✅ Suficiente RAM disponible (2+ GB libres)</li>
+          <li>✅ Caché configurada correctamente (2-4 GB)</li>
+          <li>✅ Sistema operativo y AceStream actualizados</li>
+        </ol>
+      </div>
+
+      <h2><i class="fa-solid fa-life-ring"></i> Recursos adicionales</h2>
+      
+      <h3>Foros y soporte</h3>
+      <ul>
+        <li><strong>Foro oficial:</strong> forum.acestream.org</li>
+        <li><strong>Reddit:</strong> r/AceStream</li>
+        <li><strong>GitHub:</strong> Issues en repositorio de AceStream</li>
+      </ul>
+
+      <h3>Logs de diagnóstico</h3>
+      <p>Si necesitas ayuda técnica avanzada:</p>
+      <ol>
+        <li>Encuentra los logs en: <code>%appdata%\ACEStream\logs</code></li>
+        <li>Los archivos .log contienen información técnica</li>
+        <li>Compártelos en foros para recibir ayuda específica</li>
+      </ol>
+
+      <h2><i class="fa-solid fa-rotate-right"></i> Último recurso: Reinstalación completa</h2>
+      
+      <p>Si nada ha funcionado, reinstalación desde cero:</p>
+
+      <h3>Pasos para reinstalación limpia</h3>
+      <ol>
+        <li><strong>Desinstalar completamente:</strong>
+          <ul>
+            <li>Panel de Control → Desinstalar programas</li>
+            <li>Desinstala AceStream</li>
+          </ul>
+        </li>
+        <li><strong>Limpiar residuos:</strong>
+          <ul>
+            <li>Eliminar: <code>%appdata%\ACEStream</code></li>
+            <li>Eliminar: <code>%localappdata%\ACEStream</code></li>
+          </ul>
+        </li>
+        <li><strong>Limpiar registro (opcional, avanzado):</strong>
+          <ul>
+            <li>Usa CCleaner para limpiar entradas de registro</li>
+          </ul>
+        </li>
+        <li><strong>Reiniciar el PC</strong></li>
+        <li><strong>Descargar última versión:</strong>
+          <ul>
+            <li>Visita acestream.org</li>
+            <li>Descarga instalador oficial</li>
+          </ul>
+        </li>
+        <li><strong>Instalar con permisos de administrador</strong></li>
+        <li><strong>Configurar según <a href="./01-instalar-acestream.html" style="color: #7ecbff;">nuestra guía</a></strong></li>
+      </ol>
+
+      <h2><i class="fa-solid fa-circle-check"></i> Conclusión</h2>
+      
+      <p>La mayoría de problemas con AceStream tienen solución siguiendo esta guía. Los issues más comunes son: firewall bloqueando, enlaces muertos, o configuración de caché insuficiente.</p>
+
+      <p>Si los problemas persisten después de intentar todas las soluciones, considera:</p>
+      <ul>
+        <li>Actualizar tu sistema operativo</li>
+        <li>Verificar hardware (especialmente RAM y tarjeta de red)</li>
+        <li>Contactar al soporte oficial de AceStream</li>
+        <li>Buscar ayuda en comunidades especializadas</li>
+      </ul>
+
+      <div class="note">
+        <strong><i class="fa-solid fa-link"></i> Artículos relacionados:</strong>
+        <ul>
+          <li><a href="./01-instalar-acestream.html" style="color: #7ecbff;">Guía de instalación de AceStream</a></li>
+          <li><a href="./03-que-es-acestream.html" style="color: #7ecbff;">¿Qué es AceStream?</a></li>
+          <li><a href="./08-seguridad-streaming.html" style="color: #7ecbff;">Seguridad al usar streaming</a></li>
+          <li><a href="./06-encontrar-enlaces-acestream.html" style="color: #7ecbff;">Dónde encontrar enlaces</a></li>
+        </ul>
+      </div>
+
+      <a href="../index.html" class="back-button">
+        <i class="fa-solid fa-arrow-left"></i> Volver al Blog
+      </a>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
