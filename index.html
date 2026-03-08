@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Dominios Oficiales - Shickat</title>
   <link rel="icon" type="image/png" href="Web/Logos/logo_wiki.png">
-  <link rel="stylesheet" href="styles.css?v=8">
-  <link rel="stylesheet" href="Web/styles.css">
+  <link rel="stylesheet" href="styles.css?v=9">
+  <link rel="stylesheet" href="Web/styles.css?v=2">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -24,10 +24,21 @@
         <div class="dominio-icon">
           <i class="fa-solid fa-globe"></i>
         </div>
-        <div class="dominio-nombre">Shickat.me</div>
+        <div class="dominio-nombre">Shickat.me (VPN)</div>
         <div class="dominio-descripcion">Dominio principal de Shickat</div>
         <button type="button" class="dominio-url" id="btn-wiki">
           <i class="fa-solid fa-arrow-up-right-from-square"></i> shickat.me
+        </button>
+      </div>
+
+      <div class="dominio-card">
+        <div class="dominio-icon">
+          <i class="fa-solid fa-cube"></i>
+        </div>
+        <div class="dominio-nombre">IPFS</div>
+        <div class="dominio-descripcion"></div>
+        <button type="button" class="dominio-url" id="btn-ipfs">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir
         </button>
       </div>
 
@@ -51,11 +62,11 @@
 
   <!-- Contenido Wiki (oculto inicialmente) -->
   <div id="wiki-content" class="hidden">
-    <iframe id="wiki-iframe" src="Web/index.html"></iframe>
+    <iframe id="wiki-iframe" src="Web/index.html?v=2"></iframe>
   </div>
 
   <!-- Scripts -->
-  <script src="script.js"></script>
+  <script src="script.js?v=3"></script>
 
 </body>
 </html>

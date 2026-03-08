@@ -27,10 +27,12 @@ document.addEventListener('DOMContentLoaded', function() {
   
   const eyeButton = document.getElementById('eye-button');
   const btnWiki = document.getElementById('btn-wiki');
+  const btnIPFS = document.getElementById('btn-ipfs');
   const btnBlog = document.getElementById('btn-blog');
   
   console.log('eyeButton:', eyeButton);
   console.log('btnWiki:', btnWiki);
+  console.log('btnIPFS:', btnIPFS);
   console.log('btnBlog:', btnBlog);
   
   // Botón del ojo - mostrar wiki
@@ -49,6 +51,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
+  // Botón IPFS
+  if (btnIPFS) {
+    btnIPFS.addEventListener('click', function() {
+      console.log('IPFS button clicked!');
+      window.open('https://ipfs.io/ipns/k51qzi5uqu5dgkcvogpofvprp6i8i2rtr6ej0li3ueqimgxw3803gjoqhar1uw', '_blank');
+    });
+  }
+
   // Botón shickat.blog - mostrar blog local
   if (btnBlog) {
     btnBlog.addEventListener('click', function() {
