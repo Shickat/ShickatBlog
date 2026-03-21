@@ -1,7 +1,10 @@
 // --- Copiar al portapapeles ---
 function copiarAlPortapapeles(texto, btn) {
       navigator.clipboard.writeText(texto).then(() => {
-        mostrarNotificacion('¡Enlace copiado al portapapeles!');
+        const msg = window.languageManager 
+          ? window.languageManager.getTranslation('notifCopiadoPortapapeles')
+          : '¡Enlace copiado al portapapeles!';
+        mostrarNotificacion(msg);
       });
     }
 function mostrarNotificacion(msg) {
@@ -32,12 +35,18 @@ function toggleFavorito(btn, card) {
     // Remover de favoritos
     favoritos.splice(index, 1);
     btn.innerHTML = '<i class="fa-regular fa-star"></i>';
-    mostrarNotificacion('Removido de favoritos');
+    const msg = window.languageManager 
+      ? window.languageManager.getTranslation('notifRemovidoFavoritos')
+      : 'Removido de favoritos';
+    mostrarNotificacion(msg);
   } else {
     // Agregar a favoritos
     favoritos.push(titulo);
     btn.innerHTML = '<i class="fa-solid fa-star"></i>';
-    mostrarNotificacion('Agregado a favoritos');
+    const msg = window.languageManager 
+      ? window.languageManager.getTranslation('notifAgregadoFavoritos')
+      : 'Agregado a favoritos';
+    mostrarNotificacion(msg);
   }
   
   guardarFavoritos(favoritos);

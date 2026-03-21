@@ -24,6 +24,12 @@ const translations = {
     appModalCodeLabel: 'Código Downloader:',
     appModalVersion: 'Versión v2.2',
     appModalDownload: 'Descargar',
+    btnAbrir: 'Abrir',
+    btnCopiar: 'Copiar',
+    notifCopiadoPortapapeles: '¡Enlace copiado al portapapeles!',
+    notifAgregadoFavoritos: 'Agregado a favoritos',
+    notifRemovidoFavoritos: 'Removido de favoritos',
+    placeholderBuscador: 'Buscar...',
     categories: {
       'SHICKAT ACESTREAM': 'SHICKAT ACESTREAM',
       'ACESTREAM': 'ACESTREAM',
@@ -58,6 +64,12 @@ const translations = {
     appModalCodeLabel: 'Downloader Code:',
     appModalVersion: 'Version v2.2',
     appModalDownload: 'Download',
+    btnAbrir: 'Open',
+    btnCopiar: 'Copy',
+    notifCopiadoPortapapeles: 'Link copied to clipboard!',
+    notifAgregadoFavoritos: 'Added to favorites',
+    notifRemovidoFavoritos: 'Removed from favorites',
+    placeholderBuscador: 'Search...',
     categories: {
       'SHICKAT ACESTREAM': 'SHICKAT ACESTREAM',
       'ACESTREAM': 'ACESTREAM',
@@ -92,6 +104,12 @@ const translations = {
     appModalCodeLabel: 'Code de téléchargement:',
     appModalVersion: 'Version v2.2',
     appModalDownload: 'Télécharger',
+    btnAbrir: 'Ouvrir',
+    btnCopiar: 'Copier',
+    notifCopiadoPortapapeles: 'Lien copié dans le presse-papiers!',
+    notifAgregadoFavoritos: 'Ajouté aux favoris',
+    notifRemovidoFavoritos: 'Supprimé des favoris',
+    placeholderBuscador: 'Chercher...',
     categories: {
       'SHICKAT ACESTREAM': 'SHICKAT ACESTREAM',
       'ACESTREAM': 'ACESTREAM',
@@ -126,6 +144,12 @@ const translations = {
     appModalCodeLabel: 'Código do Downloader:',
     appModalVersion: 'Versão v2.2',
     appModalDownload: 'Baixar',
+    btnAbrir: 'Abrir',
+    btnCopiar: 'Copiar',
+    notifCopiadoPortapapeles: 'Link copiado para a área de transferência!',
+    notifAgregadoFavoritos: 'Adicionado aos favoritos',
+    notifRemovidoFavoritos: 'Removido dos favoritos',
+    placeholderBuscador: 'Pesquisar...',
     categories: {
       'SHICKAT ACESTREAM': 'SHICKAT ACESTREAM',
       'ACESTREAM': 'ACESTREAM',
@@ -160,6 +184,12 @@ const translations = {
     appModalCodeLabel: 'Downloader-Code:',
     appModalVersion: 'Version v2.2',
     appModalDownload: 'Herunterladen',
+    btnAbrir: 'Öffnen',
+    btnCopiar: 'Kopieren',
+    notifCopiadoPortapapeles: 'Link in die Zwischenablage kopiert!',
+    notifAgregadoFavoritos: 'Zu Favoriten hinzugefügt',
+    notifRemovidoFavoritos: 'Aus Favoriten entfernt',
+    placeholderBuscador: 'Suchen...',
     categories: {
       'SHICKAT ACESTREAM': 'SHICKAT ACESTREAM',
       'ACESTREAM': 'ACESTREAM',
@@ -194,6 +224,12 @@ const translations = {
     appModalCodeLabel: 'Код загрузчика:',
     appModalVersion: 'Версия v2.2',
     appModalDownload: 'Скачать',
+    btnAbrir: 'Открыть',
+    btnCopiar: 'Копировать',
+    notifCopiadoPortapapeles: 'Ссылка скопирована в буфер обмена!',
+    notifAgregadoFavoritos: 'Добавлено в избранное',
+    notifRemovidoFavoritos: 'Удалено из избранного',
+    placeholderBuscador: 'Поиск...',
     categories: {
       'SHICKAT ACESTREAM': 'SHICKAT ACESTREAM',
       'ACESTREAM': 'ACESTREAM',
@@ -228,6 +264,12 @@ const translations = {
     appModalCodeLabel: '下载器代码:',
     appModalVersion: '版本 v2.2',
     appModalDownload: '下载',
+    btnAbrir: '打开',
+    btnCopiar: '复制',
+    notifCopiadoPortapapeles: '链接已复制到剪贴板！',
+    notifAgregadoFavoritos: '已添加到收藏夹',
+    notifRemovidoFavoritos: '已从收藏夹移除',
+    placeholderBuscador: '搜索...',
     categories: {
       'SHICKAT ACESTREAM': 'SHICKAT ACESTREAM',
       'ACESTREAM': 'ACESTREAM',
@@ -390,6 +432,8 @@ class LanguageManager {
     this.updateTelegramModal();
     this.updateDownloadTexts();
     this.updateAppModal();
+    this.updateButtonTexts();
+    this.updateSearchPlaceholder();
   }
 
   updateFilterLabels() {
@@ -546,6 +590,34 @@ class LanguageManager {
     const downloadBtn = appModal.querySelector('.modal-btn');
     if (downloadBtn) {
       downloadBtn.textContent = this.getTranslation('appModalDownload');
+    }
+  }
+
+  updateButtonTexts() {
+    // Actualizar textos de los botones "Abrir" y "Copiar"
+    document.querySelectorAll('.canal-btn').forEach(btn => {
+      const textContent = btn.textContent.trim();
+      const iconHTML = btn.innerHTML.substring(0, btn.innerHTML.indexOf('</i>') + 4);
+      
+      if (textContent.includes('Abrir') || textContent.includes('Open') || textContent.includes('Ouvrir') || 
+          textContent.includes('Öffnen') || textContent.includes('Открыть') || 
+          textContent.includes('打开')) {
+        const btnText = this.getTranslation('btnAbrir');
+        btn.innerHTML = iconHTML + ' ' + btnText;
+      } else if (textContent.includes('Copiar') || textContent.includes('Copy') || textContent.includes('Copier') || 
+                 textContent.includes('Kopieren') || textContent.includes('Копировать') || 
+                 textContent.includes('复制')) {
+        const btnText = this.getTranslation('btnCopiar');
+        btn.innerHTML = iconHTML + ' ' + btnText;
+      }
+    });
+  }
+
+  updateSearchPlaceholder() {
+    // Actualizar placeholder del buscador
+    const searchInput = document.getElementById('buscador');
+    if (searchInput) {
+      searchInput.placeholder = this.getTranslation('placeholderBuscador');
     }
   }
 }
