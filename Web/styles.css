@@ -1422,6 +1422,150 @@ h1 {
   }
 }
 
+/* Boton Anuncios */
+.ads-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #4eaaff;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0.95;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+}
+
+.ads-link:hover {
+  background: #3896e5;
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.ads-link i {
+  font-size: 1.2rem;
+}
+
+/* Temas claros/oscuro */
+.light-theme .ads-link {
+  background: var(--btn-bg, #007bff);
+}
+
+.dark-theme .ads-link {
+  background: #4eaaff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ads-link {
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ads-link {
+    font-size: 0.75rem;
+    padding: 7px 12px;
+    border-radius: 8px;
+  }
+
+  .ads-link i {
+    font-size: 1rem;
+  }
+}
+
+/* Modal Anuncios */
+.ads-modal-content {
+  max-width: 450px;
+}
+
+.progress-bar-container {
+  width: 100%;
+  max-width: 350px;
+  margin: 30px auto 20px auto;
+  padding: 0 10px;
+}
+
+.progress-bar {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  height: 12px;
+}
+
+.progress-fill {
+  flex: 1;
+  height: 100%;
+  background-color: #3d4555;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.progress-fill.active {
+  background-color: #4eaaff;
+}
+
+.progress-fill.completed {
+  background-color: #2ecc71;
+}
+
+.ads-message {
+  text-align: center;
+  color: #7ecbff;
+  font-size: 0.95rem;
+  margin: 5px 0;
+  min-height: 30px;
+}
+
+.ads-view-btn {
+  min-width: 150px;
+}
+
+.ads-view-btn:disabled {
+  background-color: #444;
+  color: #999;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.ads-view-btn:disabled:hover {
+  background-color: #444;
+}
+
+.light-theme .ads-modal-content {
+  background: #fff;
+  color: #23273a;
+  border: 1px solid #b3d1ff;
+}
+
+.light-theme .progress-fill {
+  background-color: #e0e0e0;
+}
+
+.light-theme .progress-fill.active {
+  background-color: #1976d2;
+}
+
+.light-theme .progress-fill.completed {
+  background-color: #4caf50;
+}
+
+.light-theme .ads-message {
+  color: #1976d2;
+}
+
+.light-theme .ads-view-btn:disabled {
+  background-color: #ddd;
+  color: #999;
+}
+
 /* Tooltip personalizado */
 [data-tooltip], .has-tooltip {
   position: relative;

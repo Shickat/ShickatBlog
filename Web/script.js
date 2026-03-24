@@ -500,13 +500,334 @@ function abrirModalApp() {
   document.getElementById('app-modal').classList.add('show');
 }
 
+// --- Anuncios/Recompensa ---
+const tiempoREINICIO = 12 * 60 * 60 * 1000; // 12 horas
+
+function abrirModalAds() {
+  const adsModal = document.getElementById('ads-modal');
+  adsModal.classList.add('show');
+  if (window.languageManager) {
+    window.languageManager.updateAdsTexts();
+  }
+  actualizarEstadoAds();
+}
+
+function obtenerEstadoAds() {
+  const estado = localStorage.getItem('adsState');
+  if (!estado) {
+    return {
+      completados: 0,
+      ultimaReinicio: Date.now(),
+      contador: 0,
+      tiempoInicio: null,
+      intervaloActivo: false
+    };
+  }
+  return JSON.parse(estado);
+}
+
+function guardarEstadoAds(estado) {
+  localStorage.setItem('adsState', JSON.stringify(estado));
+}
+
+function verificarReinicioAds() {
+  const estado = obtenerEstadoAds();
+  const ahora = Date.now();
+  
+  if (ahora - estado.ultimaReinicio >= tiempoREINICIO && estado.completados === 3) {
+    estado.completados = 0;
+    estado.ultimaReinicio = ahora;
+    estado.contador = 0;
+    estado.tiempoInicio = null;
+    estado.intervaloActivo = false;
+    guardarEstadoAds(estado);
+  }
+}
+
+function continuarContador() {
+  const estado = obtenerEstadoAds();
+  const btn = document.getElementById('ads-btn');
+  const messageDiv = document.getElementById('ads-message');
+  
+  // Si hay un contador activo y tiempo de inicio registrado
+  if (estado.intervaloActivo && estado.tiempoInicio) {
+    const ahora = Date.now();
+    const tiempoTranscurrido = Math.floor((ahora - estado.tiempoInicio) / 1000);
+    const tiempoRestante = 15 - tiempoTranscurrido;
+    
+    // Si aún quedan segundos
+    if (tiempoRestante > 0) {
+      // Marcar la barra actual como activa
+      const fill = document.getElementById(`progress-fill-${estado.completados}`);
+      if (fill) {
+        fill.classList.add('active');
+        fill.classList.remove('completed');
+      }
+      
+      // Limpiar el mensaje cuando hay contador activo
+      messageDiv.textContent = '';
+      
+      estado.contador = tiempoRestante;
+      btn.textContent = window.languageManager.getTranslation('adsWaitingSeconds').replace('{contador}', Math.ceil(estado.contador / 1000));
+      btn.disabled = true;
+      
+      // Reiniciar el intervalo
+      const intervalo = setInterval(() => {
+        estado.contador--;
+        btn.textContent = window.languageManager.getTranslation('adsWaitingSeconds').replace('{contador}', estado.contador);
+        guardarEstadoAds(estado);
+        
+        if (estado.contador === 0) {
+          clearInterval(intervalo);
+          
+          // Marcar como completado
+          const fill = document.getElementById(`progress-fill-${estado.completados}`);
+          if (fill) {
+            fill.classList.remove('active');
+            fill.classList.add('completed');
+          }
+          
+          estado.intervaloActivo = false;
+          estado.tiempoInicio = null;
+          
+          if (estado.completados === 3) {
+            const ahora = Date.now();
+            const tiempoTranscurrido = ahora - estado.ultimaReinicio;
+            const tiempoRestante = tiempoREINICIO - tiempoTranscurrido;
+            const tiempoFormato = formatearTiempoRestante(tiempoRestante);
+            const completionMsg = window.languageManager.getTranslation('adsCompletionMessage');
+            const resetMsg = window.languageManager.getTranslation('adsResetMessage').replace('{tiempoFormato}', tiempoFormato);
+            messageDiv.innerHTML = `${completionMsg}<br><span style="font-size: 0.9rem; color: #a0a0a0;">${resetMsg}</span>`;
+            btn.textContent = window.languageManager.getTranslation('adsCompleted');
+            iniciarContadorReinicioAds(messageDiv);
+          } else {
+            const progressMsg = window.languageManager.getTranslation('adsProgressMessage').replace('{numero}', estado.completados);
+            messageDiv.textContent = progressMsg;
+            btn.disabled = false;
+            btn.textContent = window.languageManager.getTranslation('adsViewButton');
+          }
+          
+          guardarEstadoAds(estado);
+        }
+      }, 1000);
+    } else {
+      // Si ya pasaron los 15 segundos, completar automáticamente
+      estado.intervaloActivo = false;
+      estado.tiempoInicio = null;
+      
+      const fill = document.getElementById(`progress-fill-${estado.completados}`);
+      if (fill) {
+        fill.classList.remove('active');
+        fill.classList.add('completed');
+      }
+      
+      if (estado.completados === 3) {
+        const ahora = Date.now();
+        const tiempoTranscurrido = ahora - estado.ultimaReinicio;
+        const tiempoRestante = tiempoREINICIO - tiempoTranscurrido;
+        const tiempoFormato = formatearTiempoRestante(tiempoRestante);
+        const completionMsg = window.languageManager.getTranslation('adsCompletionMessage');
+        const resetMsg = window.languageManager.getTranslation('adsResetMessage').replace('{tiempoFormato}', tiempoFormato);
+        messageDiv.innerHTML = `${completionMsg}<br><span style="font-size: 0.9rem; color: #a0a0a0;">${resetMsg}</span>`;
+        btn.textContent = window.languageManager.getTranslation('adsCompleted');
+        iniciarContadorReinicioAds(messageDiv);
+      } else {
+        const progressMsg = window.languageManager.getTranslation('adsProgressMessage').replace('{numero}', estado.completados);
+        messageDiv.textContent = progressMsg;
+        btn.disabled = false;
+        btn.textContent = window.languageManager.getTranslation('adsViewButton');
+      }
+      
+      guardarEstadoAds(estado);
+    }
+  }
+}
+
+function formatearTiempoRestante(tiempoMs) {
+  const totalSegundos = Math.max(0, Math.floor(tiempoMs / 1000));
+  const horas = Math.floor(totalSegundos / 3600);
+  const minutos = Math.floor((totalSegundos % 3600) / 60);
+  const segundos = totalSegundos % 60;
+  
+  return `${String(horas).padStart(2, '0')}:${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
+}
+
+function iniciarContadorReinicioAds(messageDiv) {
+  let intervaloReinicio = setInterval(() => {
+    const estado = obtenerEstadoAds();
+    
+    // Si ya no está completado, parar el intervalo
+    if (estado.completados !== 3) {
+      clearInterval(intervaloReinicio);
+      return;
+    }
+    
+    const ahora = Date.now();
+    const doceHoras = 12 * 60 * 60 * 1000;
+    const tiempoTranscurrido = ahora - estado.ultimaReinicio;
+    const tiempoRestante = tiempoREINICIO - tiempoTranscurrido;
+    
+    if (tiempoRestante <= 0) {
+      // El reinicio ya ocurrió
+      clearInterval(intervaloReinicio);
+      estado.completados = 0;
+      estado.ultimaReinicio = ahora;
+      guardarEstadoAds(estado);
+      messageDiv.innerHTML = window.languageManager.getTranslation('adsInitialMessage');
+      // Refrescar toda la UI: botón, barras, etc.
+      actualizarEstadoAds();
+    } else {
+      // Mostrar tiempo restante
+      const tiempoFormato = formatearTiempoRestante(tiempoRestante);
+      const completionMsg = window.languageManager.getTranslation('adsCompletionMessage');
+      const resetMsg = window.languageManager.getTranslation('adsResetMessage').replace('{tiempoFormato}', tiempoFormato);
+      messageDiv.innerHTML = `${completionMsg}<br><span style="font-size: 0.9rem; color: #a0a0a0;">${resetMsg}</span>`;
+    }
+  }, 1000);
+}
+
+function actualizarEstadoAds() {
+  verificarReinicioAds();
+  const estado = obtenerEstadoAds();
+  const btn = document.getElementById('ads-btn');
+  const messageDiv = document.getElementById('ads-message');
+  
+  // Actualizar barras de progreso (pero no si hay un contador activo en curso)
+  if (!estado.intervaloActivo || !estado.tiempoInicio) {
+    for (let i = 1; i <= 3; i++) {
+      const fill = document.getElementById(`progress-fill-${i}`);
+      if (i <= estado.completados) {
+        fill.classList.add('completed');
+        fill.classList.remove('active');
+      } else {
+        fill.classList.remove('completed', 'active');
+      }
+    }
+  } else {
+    // Si hay contador activo, marcar el actual como activo y los completados como completados
+    for (let i = 1; i <= 3; i++) {
+      const fill = document.getElementById(`progress-fill-${i}`);
+      if (i < estado.completados) {
+        fill.classList.add('completed');
+        fill.classList.remove('active');
+      } else if (i === estado.completados) {
+        fill.classList.add('active');
+        fill.classList.remove('completed');
+      } else {
+        fill.classList.remove('completed', 'active');
+      }
+    }
+  }
+  
+  // Actualizar estado del botón y mensaje
+  // PRIMERO: Si hay contador activo, continuar con él (incluso si completados === 3)
+  if (estado.intervaloActivo && estado.tiempoInicio) {
+    // Continuar con el contador si estaba activo
+    continuarContador();
+  } else if (estado.completados === 3) {
+    btn.disabled = true;
+    btn.textContent = window.languageManager.getTranslation('adsCompleted');
+    
+    // Calcular tiempo restante
+    const ahora = Date.now();
+    const tiempoTranscurrido = ahora - estado.ultimaReinicio;
+    const tiempoRestante = tiempoREINICIO - tiempoTranscurrido;
+    const tiempoFormato = formatearTiempoRestante(tiempoRestante);
+    
+    const completionMsg = window.languageManager.getTranslation('adsCompletionMessage');
+    const resetMsg = window.languageManager.getTranslation('adsResetMessage').replace('{tiempoFormato}', tiempoFormato);
+    messageDiv.innerHTML = `${completionMsg}<br><span style="font-size: 0.9rem; color: #a0a0a0;">${resetMsg}</span>`;
+    
+    // Iniciar contador de reinicio
+    iniciarContadorReinicioAds(messageDiv);
+  } else if (estado.contador > 0) {
+    btn.disabled = true;
+    btn.textContent = window.languageManager.getTranslation('adsWaitingSeconds').replace('{contador}', estado.contador);
+  } else {
+    btn.disabled = false;
+    btn.textContent = window.languageManager.getTranslation('adsViewButton');
+  }
+}
+
+function verAnuncio() {
+  const btn = document.getElementById('ads-btn');
+  const messageDiv = document.getElementById('ads-message');
+  let estado = obtenerEstadoAds();
+  
+  if (btn.disabled || estado.completados >= 3) {
+    return;
+  }
+  
+  // Abrir enlace en nueva pestaña
+  window.open('https://omg10.com/4/9594154', '_blank', 'noopener,noreferrer');
+  
+  // IMPORTANTE: Incrementar y guardar el estado INMEDIATAMENTE
+  estado.completados++;
+  estado.contador = 15;
+  estado.tiempoInicio = Date.now();
+  estado.intervaloActivo = true;
+  guardarEstadoAds(estado); // Guardar ANTES del intervalo
+  
+  // Deshabilitar botón
+  btn.disabled = true;
+  
+  // Activar la barra de progreso actual
+  const fill = document.getElementById(`progress-fill-${estado.completados}`);
+  if (fill) {
+    fill.classList.add('active');
+  }
+  
+  // Actualizar mensaje y botón
+  messageDiv.textContent = '';
+  btn.textContent = window.languageManager.getTranslation('adsWaitingSeconds').replace('{contador}', 15);
+  
+  // Contador regresivo de 15 segundos
+  const intervalo = setInterval(() => {
+    estado.contador--;
+    btn.textContent = window.languageManager.getTranslation('adsWaitingSeconds').replace('{contador}', estado.contador);
+    guardarEstadoAds(estado); // Guardar en cada tick
+    
+    if (estado.contador === 0) {
+      clearInterval(intervalo);
+      
+      // Marcar como completado
+      fill.classList.remove('active');
+      fill.classList.add('completed');
+      
+      estado.intervaloActivo = false;
+      estado.tiempoInicio = null;
+      
+      if (estado.completados === 3) {
+        const ahora = Date.now();
+        const tiempoTranscurrido = ahora - estado.ultimaReinicio;
+        const tiempoRestante = tiempoREINICIO - tiempoTranscurrido;
+        const tiempoFormato = formatearTiempoRestante(tiempoRestante);
+        const completionMsg = window.languageManager.getTranslation('adsCompletionMessage');
+        const resetMsg = window.languageManager.getTranslation('adsResetMessage').replace('{tiempoFormato}', tiempoFormato);
+        messageDiv.innerHTML = `${completionMsg}<br><span style="font-size: 0.9rem; color: #a0a0a0;">${resetMsg}</span>`;
+        btn.textContent = window.languageManager.getTranslation('adsCompleted');
+        iniciarContadorReinicioAds(messageDiv);
+      } else {
+        const progressMsg = window.languageManager.getTranslation('adsProgressMessage').replace('{numero}', estado.completados);
+        messageDiv.textContent = progressMsg;
+        btn.disabled = false;
+        btn.textContent = window.languageManager.getTranslation('adsViewButton');
+      }
+      
+      guardarEstadoAds(estado); // Guardar estado final
+    }
+  }, 1000);
+}
+
 // Cierre de modales (cada uno con su botón X)
 document.addEventListener('DOMContentLoaded', function() {
   const telegramModal = document.getElementById('telegram-modal');
   const appModal = document.getElementById('app-modal');
+  const adsModal = document.getElementById('ads-modal');
 
   const telegramClose = telegramModal ? telegramModal.querySelector('.close') : null;
   const appClose = appModal ? appModal.querySelector('.close') : null;
+  const adsClose = adsModal ? adsModal.querySelector('.close') : null;
 
   telegramClose && telegramClose.addEventListener('click', function() {
     telegramModal.classList.remove('show');
@@ -516,8 +837,13 @@ document.addEventListener('DOMContentLoaded', function() {
     appModal.classList.remove('show');
   });
 
+  adsClose && adsClose.addEventListener('click', function() {
+    adsModal.classList.remove('show');
+  });
+
   window.addEventListener('click', function(e) {
     if (e.target === telegramModal) telegramModal.classList.remove('show');
     if (e.target === appModal) appModal.classList.remove('show');
+    if (e.target === adsModal) adsModal.classList.remove('show');
   });
 });

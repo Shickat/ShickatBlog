@@ -30,6 +30,14 @@ const translations = {
     notifAgregadoFavoritos: 'Agregado a favoritos',
     notifRemovidoFavoritos: 'Removido de favoritos',
     placeholderBuscador: 'Buscar...',
+    adsTitle: 'APOYANOS',
+    adsInitialMessage: 'Completa 3 visualizaciones para apoyarnos',
+    adsViewButton: 'Ver',
+    adsWaitingSeconds: 'Espera {contador} segundos',
+    adsCompleted: 'Completado',
+    adsCompletionMessage: 'Gracias por la aportacion',
+    adsResetMessage: 'Reseteo en {tiempoFormato}',
+    adsProgressMessage: 'Visualización {numero}/3 completada',
     categories: {
       'SHICKAT ACESTREAM': 'SHICKAT ACESTREAM',
       'ACESTREAM': 'ACESTREAM',
@@ -70,6 +78,14 @@ const translations = {
     notifAgregadoFavoritos: 'Added to favorites',
     notifRemovidoFavoritos: 'Removed from favorites',
     placeholderBuscador: 'Search...',
+    adsTitle: 'SUPPORT US',
+    adsInitialMessage: 'Complete 3 views to support us',
+    adsViewButton: 'View',
+    adsWaitingSeconds: 'Wait {contador} seconds',
+    adsCompleted: 'Completed',
+    adsCompletionMessage: 'Thank you for your support',
+    adsResetMessage: 'Reset in {tiempoFormato}',
+    adsProgressMessage: 'View {numero}/3 completed',
     categories: {
       'SHICKAT ACESTREAM': 'SHICKAT ACESTREAM',
       'ACESTREAM': 'ACESTREAM',
@@ -110,6 +126,14 @@ const translations = {
     notifAgregadoFavoritos: 'Ajouté aux favoris',
     notifRemovidoFavoritos: 'Supprimé des favoris',
     placeholderBuscador: 'Chercher...',
+    adsTitle: 'SOUTIENS-NOUS',
+    adsInitialMessage: 'Complétez 3 vues pour nous soutenir',
+    adsViewButton: 'Voir',
+    adsWaitingSeconds: 'Attendre {contador} secondes',
+    adsCompleted: 'Complété',
+    adsCompletionMessage: 'Merci pour votre soutien',
+    adsResetMessage: 'Réinitialisation dans {tiempoFormato}',
+    adsProgressMessage: 'Vue {numero}/3 complétée',
     categories: {
       'SHICKAT ACESTREAM': 'SHICKAT ACESTREAM',
       'ACESTREAM': 'ACESTREAM',
@@ -150,6 +174,14 @@ const translations = {
     notifAgregadoFavoritos: 'Adicionado aos favoritos',
     notifRemovidoFavoritos: 'Removido dos favoritos',
     placeholderBuscador: 'Pesquisar...',
+    adsTitle: 'APOIE-NOS',
+    adsInitialMessage: 'Complete 3 visualizações para nos apoiar',
+    adsViewButton: 'Ver',
+    adsWaitingSeconds: 'Aguarde {contador} segundos',
+    adsCompleted: 'Concluído',
+    adsCompletionMessage: 'Obrigado pelo seu apoio',
+    adsResetMessage: 'Redefinição em {tiempoFormato}',
+    adsProgressMessage: 'Visualização {numero}/3 concluída',
     categories: {
       'SHICKAT ACESTREAM': 'SHICKAT ACESTREAM',
       'ACESTREAM': 'ACESTREAM',
@@ -190,6 +222,14 @@ const translations = {
     notifAgregadoFavoritos: 'Zu Favoriten hinzugefügt',
     notifRemovidoFavoritos: 'Aus Favoriten entfernt',
     placeholderBuscador: 'Suchen...',
+    adsTitle: 'UNTERSTÜTZE UNS',
+    adsInitialMessage: 'Schließen Sie 3 Aufrufe ab, um uns zu unterstützen',
+    adsViewButton: 'Ansicht',
+    adsWaitingSeconds: 'Bitte wartet {contador} Sekunden',
+    adsCompleted: 'Abgeschlossen',
+    adsCompletionMessage: 'Vielen Dank für Ihre Unterstützung',
+    adsResetMessage: 'Zurücksetzen in {tiempoFormato}',
+    adsProgressMessage: 'Ansicht {numero}/3 abgeschlossen',
     categories: {
       'SHICKAT ACESTREAM': 'SHICKAT ACESTREAM',
       'ACESTREAM': 'ACESTREAM',
@@ -230,6 +270,14 @@ const translations = {
     notifAgregadoFavoritos: 'Добавлено в избранное',
     notifRemovidoFavoritos: 'Удалено из избранного',
     placeholderBuscador: 'Поиск...',
+    adsTitle: 'ПОДДЕРЖИТЕ НАС',
+    adsInitialMessage: 'Завершите 3 просмотра, чтобы поддержать нас',
+    adsViewButton: 'Просмотр',
+    adsWaitingSeconds: 'Ожидание {contador} секунд',
+    adsCompleted: 'Завершено',
+    adsCompletionMessage: 'Спасибо за вашу поддержку',
+    adsResetMessage: 'Сброс через {tiempoFormato}',
+    adsProgressMessage: 'Просмотр {numero}/3 завершен',
     categories: {
       'SHICKAT ACESTREAM': 'SHICKAT ACESTREAM',
       'ACESTREAM': 'ACESTREAM',
@@ -270,6 +318,14 @@ const translations = {
     notifAgregadoFavoritos: '已添加到收藏夹',
     notifRemovidoFavoritos: '已从收藏夹移除',
     placeholderBuscador: '搜索...',
+    adsTitle: '支持我们',
+    adsInitialMessage: '完成3次浏览以支持我们',
+    adsViewButton: '查看',
+    adsWaitingSeconds: '等待{contador}秒',
+    adsCompleted: '已完成',
+    adsCompletionMessage: '感谢您的支持',
+    adsResetMessage: '{tiempoFormato}后重置',
+    adsProgressMessage: '浏览{numero}/3已完成',
     categories: {
       'SHICKAT ACESTREAM': 'SHICKAT ACESTREAM',
       'ACESTREAM': 'ACESTREAM',
@@ -434,6 +490,7 @@ class LanguageManager {
     this.updateAppModal();
     this.updateButtonTexts();
     this.updateSearchPlaceholder();
+    this.updateAdsTexts();
   }
 
   updateFilterLabels() {
@@ -618,6 +675,32 @@ class LanguageManager {
     const searchInput = document.getElementById('buscador');
     if (searchInput) {
       searchInput.placeholder = this.getTranslation('placeholderBuscador');
+    }
+  }
+
+  updateAdsTexts() {
+    // Actualizar título del modal de anuncios
+    const adsTitle = document.getElementById('ads-title');
+    if (adsTitle) {
+      adsTitle.textContent = this.getTranslation('adsTitle');
+    }
+
+    // Actualizar mensaje inicial si no está en progreso
+    const adsMessage = document.getElementById('ads-message');
+    const adsBtn = document.getElementById('ads-btn');
+    if (adsMessage && adsBtn && !adsBtn.disabled) {
+      // Solo actualizar si no está en medio de una acción
+      if (typeof window.obtenerEstadoAds !== 'undefined') {
+        const estado = window.obtenerEstadoAds();
+        if (!estado || !estado.intervaloActivo) {
+          adsMessage.textContent = this.getTranslation('adsInitialMessage');
+          adsBtn.textContent = this.getTranslation('adsViewButton');
+        }
+      } else {
+        // Si obtenerEstadoAds no existe aún, simplemente actualizar
+        adsMessage.textContent = this.getTranslation('adsInitialMessage');
+        adsBtn.textContent = this.getTranslation('adsViewButton');
+      }
     }
   }
 }
