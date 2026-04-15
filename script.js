@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (btnIPFS) {
     btnIPFS.addEventListener('click', function() {
       console.log('IPFS button clicked!');
-      window.open('https://ipfs.io/ipns/k51qzi5uqu5dgkcvogpofvprp6i8i2rtr6ej0li3ueqimgxw3803gjoqhar1uw', '_blank');
+      window.open('https://ipfs.io/ipns/k51qzi5uqu5djuh4f1w0oladi6rxgf2lkbocof3c1u5mz5k0m3or0lqknppcwa', '_blank');
     });
   }
 
