@@ -59,11 +59,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Botón shickat.blog - mostrar blog local
-  if (btnBlog) {
-    btnBlog.addEventListener('click', function() {
-      console.log('Blog button clicked!');
-      mostrarContenido('blog/index.html');
-    });
-  }
 });

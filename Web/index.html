@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Wiki Shickat</title>
   <link rel="icon" type="image/png" href="Logos/logo_wiki.png">
-  <link rel="stylesheet" href="styles.css?v=11">
+  <link rel="stylesheet" href="styles.css?v=12">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <!-- NAVIDAD (DESCOMENTAR EN EPOCAS)
   <link rel="stylesheet" href="Navidad/styles.css"> -->
-  <script src="language.js?v=11"></script>
+  <!-- MUNDIAL - Sistema de notificaciones de partidos (DESCOMENTAR PARA ACTIVAR) -->
+  <link rel="stylesheet" href="Mundial/notificador.css">
+  <script src="Mundial/notificador.js"></script>
+  <script src="language.js?v=12"></script>
 </head>
 
 <body>
@@ -160,6 +163,32 @@
               <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir
             </button>
             <button class="canal-btn" onclick="copiarAlPortapapeles('71cb5e2567a8b39f5bdc4fa791992781b052f0bc', this)">
+              <i class="fa-solid fa-copy"></i> Copiar
+            </button>
+          </div>
+        </article>
+
+
+
+        <article class="canal-card" data-titulo="DAZNLALIGA2" data-lang="es">
+          <div class="canal-header">
+            <span class="canal-nombre">DAZN LALIGA 2
+            </span>
+            <div class="lang-badges" aria-hidden>
+              <img src="Flags/Spain.svg" alt="ES" class="flag-badge" data-lang="es">
+            </div>
+          </div>
+          <div class="canal-link-row">
+            <a class="site-link">
+              <i class="fa-solid fa-link"></i>
+              a7ab6d2c40b253fee9d908a5fc6618acb53a9122
+            </a>
+          </div>
+          <div class="canal-actions">
+            <button class="canal-btn" onclick="window.open('acestream://a7ab6d2c40b253fee9d908a5fc6618acb53a9122')">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir
+            </button>
+            <button class="canal-btn" onclick="copiarAlPortapapeles('a7ab6d2c40b253fee9d908a5fc6618acb53a9122', this)">
               <i class="fa-solid fa-copy"></i> Copiar
             </button>
           </div>
@@ -2778,7 +2807,7 @@
   </div>
   -->
   <!-- ----------------------  -->
-  <script src="script.js?v=11"></script>
+  <script src="script.js?v=12"></script>
   <!-- NAVIDAD (DESCOMENTAR EN EPOCAS)
   <script src="Navidad/script.js"></script> -->
 </body>
