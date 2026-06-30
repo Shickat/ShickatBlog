@@ -27,11 +27,13 @@ document.addEventListener('DOMContentLoaded', function() {
   
   const eyeButton = document.getElementById('eye-button');
   const btnWiki = document.getElementById('btn-wiki');
+  const btnWikii = document.getElementById('btn-wikii');
   const btnIPFS = document.getElementById('btn-ipfs');
   const btnBlog = document.getElementById('btn-blog');
   
   console.log('eyeButton:', eyeButton);
   console.log('btnWiki:', btnWiki);
+  console.log('btnWikii:', btnWikii);
   console.log('btnIPFS:', btnIPFS);
   console.log('btnBlog:', btnBlog);
   
@@ -46,6 +48,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // Botón shickat.me - redirigir a https://shickat.me
   if (btnWiki) {
     btnWiki.addEventListener('click', function() {
+      console.log('Wiki button clicked!');
+      window.open('https://shickat.online', '_blank');
+    });
+  }
+
+  if (btnWikii) {
+    btnWikii.addEventListener('click', function() {
       console.log('Wiki button clicked!');
       window.open('https://shickat.me', '_blank');
     });
